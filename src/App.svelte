@@ -1,7 +1,7 @@
 <script>
-  import Header from '../components/Header.svelte';
-  import Masonry from '../components/Masonry.svelte';
-  import { images } from '../stores/imageStore.js';
+  import Header from './components/Header.svelte';
+  import Masonry from './components/Masonry.svelte';
+  import { images } from './stores/imageStore.js';
   
   // Optional: Add filtering logic here
   let searchQuery = '';
@@ -13,10 +13,6 @@
     searchQuery = event.detail;
   }
 </script>
-
-<svelte:head>
-  <title>PinBoard - A Pinterest-like App</title>
-</svelte:head>
 
 <main>
   <Header on:search={handleSearch} />
