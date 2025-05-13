@@ -4,9 +4,9 @@ import { writable } from 'svelte/store';
 // For now, we'll create some sample data
 
 // Helper function to create path to local images
-// @ts-ignore
+
 function getImagePath(filename) {
-  return `catmemes/${filename}`;
+  return `/catmemes/${filename}`;
 }
 
 // Sample image data
@@ -22,7 +22,7 @@ const sampleImages = [
   {
     id: 2,
     title: "Cozy Interior",
-    url: getImagePath("interior.jpg"),
+    url: getImagePath("meme2.png"),
     width: 1000,
     height: 800,
     user: "Home Decor"
@@ -30,7 +30,7 @@ const sampleImages = [
   {
     id: 3,
     title: "Healthy Breakfast",
-    url: getImagePath("breakfast.jpg"),
+    url: getImagePath("meme3.PNG"),
     width: 900,
     height: 1100,
     user: "FoodieLife"
@@ -38,7 +38,7 @@ const sampleImages = [
   {
     id: 4,
     title: "Urban Photography",
-    url: getImagePath("urban.jpg"),
+    url: getImagePath("meme4.JPG"),
     width: 1200,
     height: 800,
     user: "CityScapes"
@@ -46,7 +46,7 @@ const sampleImages = [
   {
     id: 5,
     title: "Digital Art Creation",
-    url: getImagePath("art.jpg"),
+    url: getImagePath("meme5.JPG"),
     width: 800,
     height: 800,
     user: "DigitalArtist"
@@ -54,7 +54,7 @@ const sampleImages = [
   {
     id: 6,
     title: "Travel Memories",
-    url: getImagePath("travel.jpg"),
+    url: getImagePath("meme6.JPG"),
     width: 1000,
     height: 1500,
     user: "Wanderlust"
@@ -62,7 +62,7 @@ const sampleImages = [
   {
     id: 7,
     title: "Minimalist Design",
-    url: getImagePath("design.jpg"),
+    url: getImagePath("meme7.JPG"),
     width: 900,
     height: 700,
     user: "MinimalismArt"
@@ -70,7 +70,7 @@ const sampleImages = [
   {
     id: 8,
     title: "Tech Workspace",
-    url: getImagePath("workspace.jpg"),
+    url: getImagePath("meme8.JPG"),
     width: 1100,
     height: 900,
     user: "TechEnthusiast"
@@ -78,7 +78,7 @@ const sampleImages = [
   {
     id: 9,
     title: "Sunset View",
-    url: getImagePath("sunset.jpg"),
+    url: getImagePath("meme9.JPG"),
     width: 800,
     height: 1000,
     user: "SkyViewer"
@@ -86,7 +86,7 @@ const sampleImages = [
   {
     id: 10,
     title: "Plant Collection",
-    url: getImagePath("plants.jpg"),
+    url: getImagePath("meme10.JPG"),
     width: 700,
     height: 1100,
     user: "PlantLover"
@@ -94,7 +94,7 @@ const sampleImages = [
   {
     id: 11,
     title: "Coffee Art",
-    url: getImagePath("coffee.jpg"),
+    url: getImagePath("meme11.JPG"),
     width: 800,
     height: 900,
     user: "CoffeeLover"
@@ -102,7 +102,7 @@ const sampleImages = [
   {
     id: 12,
     title: "Book Corner",
-    url: getImagePath("books.jpg"),
+    url: getImagePath("meme12.JPG"),
     width: 900,
     height: 1200,
     user: "BookWorm"
@@ -113,13 +113,11 @@ const sampleImages = [
 export const images = writable(sampleImages);
 
 // Function to add a new image
-// @ts-ignore
 export function addImage(image) {
   images.update(imgs => [...imgs, {...image, id: imgs.length + 1}]);
 }
 
 // Function to remove an image
-// @ts-ignore
 export function removeImage(id) {
   images.update(imgs => imgs.filter(img => img.id !== id));
 }
