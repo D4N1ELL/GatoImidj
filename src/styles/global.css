@@ -5,12 +5,41 @@
   padding: 0;
 }
 
+/* Define theme variables for both light and dark modes */
+:root {
+  /* Light mode (default) variables */
+  --color-background: #ffffff;
+  --color-text: #333333;
+  --color-primary: #ff6b6b;
+  --color-secondary: #4ecdc4;
+  --color-border: #e0e0e0;
+  --color-card-bg: #f9f9f9;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  
+  /* Transition for smooth theme switching */
+  --transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dark mode variables - applied when .dark-mode class is present on html or body */
+.dark-mode {
+  --color-background: #1a1a1a;
+  --color-text: #f0f0f0;
+  --color-primary: #ff8585;
+  --color-secondary: #5aede5;
+  --color-border: #444444;
+  --color-card-bg: #2a2a2a;
+  --color-shadow: rgba(0, 0, 0, 0.3);
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, */
+    /* Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+
+  font-family: 'Patrick Hand', cursive;
   line-height: 1.6;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: var(--transition-theme);
 }
 
 /* Typography */
@@ -45,4 +74,32 @@ button {
   body {
     font-size: 14px;
   }
+}
+
+/* ************************************************** */
+
+
+/* Example card styling using theme variables */
+.card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px var(--color-shadow);
+  transition: var(--transition-theme);
+}
+
+/* More style elements using theme variables */
+a {
+  color: var(--color-primary);
+  transition: var(--transition-theme);
+}
+
+button {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  border: none;
+  transition: var(--transition-theme);
+}
+
+button:hover {
+  background-color: var(--color-secondary);
 }
