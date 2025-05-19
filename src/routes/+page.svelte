@@ -15,7 +15,7 @@
 </script>
 
 <svelte:head>
-  <title>PinBoard - A Pinterest-like App</title>
+  <title>GatoImidj - Explore</title>
 </svelte:head>
 
 <main>

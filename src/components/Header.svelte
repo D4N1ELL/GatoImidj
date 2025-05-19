@@ -1,26 +1,41 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import { page } from '$app/stores';
   import SearchBar from './SearchBar.svelte';
+  import { likedPins } from '../stores/likedStore';
   
   const dispatch = createEventDispatcher();
   
   function handleSearch(event) {
     dispatch('search', event.detail);
   }
+  
+  // Check if current page is active
+  $: isHomePage = $page?.url?.pathname === '/' || $page?.url?.pathname === '';
+  $: isLikedPage = $page?.url?.pathname === '/liked';
+  
+  // Get count of liked pins for the badge
+  $: likedCount = $likedPins.length;
 </script>
 
 <header>
   <div class="logo">
-    <h1>PinBoard</h1>
+    <h1>GatoImidj</h1>
   </div>
-  
   <SearchBar on:search={handleSearch} />
-  
   <nav>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/explore">Explore</a></li>
-      <li><a href="/profile">Profile</a></li>
+      <li class:active={isHomePage}>
+        <a href="/">Home</a>
+      </li>
+      <li class:active={isLikedPage}>
+        <a href="/liked" class="liked-link">
+          Liked
+          {#if likedCount > 0}
+            <span class="liked-count">{likedCount}</span>
+          {/if}
+        </a>
+      </li>
     </ul>
   </nav>
 </header>
@@ -31,30 +46,62 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    border-bottom: 1px solid #eee;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
-  
+
   .logo h1 {
-    font-size: 1.5rem;
     margin: 0;
-    color: #e60023;
+    font-size: 1.5rem;
+    color: #ca001e;
   }
-  
+
   nav ul {
     display: flex;
-    gap: 1.5rem;
     list-style: none;
     margin: 0;
     padding: 0;
+    gap: 1rem;
   }
-  
+
   nav a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
   }
-  
+
+  li.active a {
+    color: #ca001e;
+    font-weight: 600;
+  }
+
   nav a:hover {
-    color: #e60023;
+    color: #ca001e;
+  }
+
+  .liked-link {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    position: relative;
+  }
+
+  .liked-count {
+    background-color: #ca001e;
+    color: white;
+    border-radius: 50%;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.25rem;
   }
 </style>
