@@ -40,7 +40,7 @@
         </a>
       </li>
       <li>
-        <DarkButton on:toggle={toggleDarkMode} />
+        <DarkButton/>
       </li>
     </ul>
   </nav>
