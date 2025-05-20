@@ -17,7 +17,6 @@
   
   // Get count of liked pins for the badge
   $: likedCount = $likedPins.length;
-
 </script>
 
 <slot />
