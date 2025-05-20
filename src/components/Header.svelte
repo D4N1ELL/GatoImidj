@@ -3,6 +3,7 @@
   import { page } from '$app/stores';
   import SearchBar from './SearchBar.svelte';
   import { likedPins } from '../stores/likedStore';
+  import DarkButton from './DarkModeSwitch.svelte';
   
   const dispatch = createEventDispatcher();
   
@@ -16,7 +17,10 @@
   
   // Get count of liked pins for the badge
   $: likedCount = $likedPins.length;
+
 </script>
+
+<slot />
 
 <header>
   <div class="logo">
@@ -36,17 +40,23 @@
           {/if}
         </a>
       </li>
+      <li>
+        <DarkButton on:toggle={toggleDarkMode} />
+      </li>
     </ul>
   </nav>
 </header>
 
+
+
 <style>
   header {
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    background-color: white;
+    background-color: var(--color-background-header);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 0;
@@ -56,7 +66,7 @@
   .logo h1 {
     margin: 0;
     font-size: 1.5rem;
-    color: #ca001e;
+    color: var(--color-logo);
   }
 
   nav ul {
@@ -65,11 +75,12 @@
     margin: 0;
     padding: 0;
     gap: 1rem;
+    align-items: center;
   }
 
   nav a {
     text-decoration: none;
-    color: #333;
+    color: var(--color-text);
     font-weight: 500;
     padding: 0.5rem;
     border-radius: 4px;
@@ -77,12 +88,12 @@
   }
 
   li.active a {
-    color: #ca001e;
+    color: var(--color-text-active);
     font-weight: 600;
   }
 
   nav a:hover {
-    color: #ca001e;
+    text-decoration: underline;
   }
 
   .liked-link {
@@ -104,4 +115,5 @@
     justify-content: center;
     padding: 0 0.25rem;
   }
+
 </style>

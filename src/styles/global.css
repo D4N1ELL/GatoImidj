@@ -9,11 +9,15 @@
 :root {
   /* Light mode (default) variables */
   --color-background: #ffffff;
+  --color-background-header: #f0f0f0;
   --color-text: #333333;
+  --color-text-active: #ca001e;
+  --color-logo: #ca001e;
   --color-primary: #ff6b6b;
   --color-secondary: #4ecdc4;
   --color-border: #e0e0e0;
   --color-card-bg: #f9f9f9;
+  --color-card-bg-like: #f9f9f9;
   --color-shadow: rgba(0, 0, 0, 0.1);
   
   /* Transition for smooth theme switching */
@@ -23,11 +27,15 @@
 /* Dark mode variables - applied when .dark-mode class is present on html or body */
 .dark-mode {
   --color-background: #1a1a1a;
+  --color-background-header: #454545;
   --color-text: #f0f0f0;
+  --color-text-active: #f0f0f0;
+  --color-logo: #f0f0f0;
   --color-primary: #ff8585;
   --color-secondary: #5aede5;
   --color-border: #444444;
-  --color-card-bg: #2a2a2a;
+  --color-card-bg: #454545;
+  --color-card-bg-like: #EEEEEE;
   --color-shadow: rgba(0, 0, 0, 0.3);
 }
 
