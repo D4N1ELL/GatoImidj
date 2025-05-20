@@ -1,10 +1,27 @@
 <script>
     import { likedPins } from '../../stores/likedStore';
+    import Masonry from '../../components/Masonry.svelte';
+    import { images } from '../../stores/imageStore.js';
     import PinCard from '../../components/PinCard.svelte';
+    import { createEventDispatcher } from 'svelte';
+    import { page } from '$app/stores';
+    import Header from '../../components/Header.svelte';
+    import SearchBar from '../../components/SearchBar.svelte';
+    import DarkButton from '../../components/DarkModeSwitch.svelte';
+
+    let searchQuery = '';
+    $: filteredImages = searchQuery 
+        ? $likedPins.filter(img => img.title.toLowerCase().includes(searchQuery.toLowerCase()))
+        : $likedPins;
+
+    function handleSearch(event) {
+        searchQuery = event.detail;
+    }
 </script>
 
 <main>
-    <h1>Your Liked Pins</h1>
+
+    <Header on:search={handleSearch} />
     
     {#if $likedPins.length === 0}
         <div class="empty-state">
@@ -14,34 +31,24 @@
                 </svg>
             </div>
             <p>You haven't liked any pins yet</p>
-            <a href="/" class="discover-button">Discover pins</a>
         </div>
     {:else}
         <div class="pins-grid">
-            {#each $likedPins as image (image.url)}
-                <PinCard {image} />
-            {/each}
+            <Masonry images={$likedPins} />
         </div>
     {/if}
 </main>
 
 <style>
     main {
-        max-width: 1200px;
+        width: 100%;
+        max-width: 1920px;
         margin: 0 auto;
         padding: 20px;
     }
     
-    h1 {
-        text-align: center;
-        margin-bottom: 32px;
-        font-size: 28px;
-    }
-    
     .pins-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 24px;
+        margin-top: 2rem;
     }
     
     .empty-state {
@@ -63,18 +70,4 @@
         margin-bottom: 24px;
     }
     
-    .discover-button {
-        background-color: #ca001e;
-        color: white;
-        border: none;
-        border-radius: 24px;
-        padding: 12px 24px;
-        font-weight: bold;
-        text-decoration: none;
-        transition: background-color 0.2s ease;
-    }
-    
-    .discover-button:hover {
-        background-color: #a7001a;
-    }
 </style>

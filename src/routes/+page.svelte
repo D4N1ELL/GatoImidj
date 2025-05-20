@@ -3,7 +3,7 @@
   import Masonry from '../components/Masonry.svelte';
   import { images } from '../stores/imageStore.js';
   
-  // Optional: Add filtering logic here
+  //filtering logic
   let searchQuery = '';
   $: filteredImages = searchQuery 
     ? $images.filter(img => img.title.toLowerCase().includes(searchQuery.toLowerCase()))
